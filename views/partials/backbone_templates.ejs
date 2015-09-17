@@ -30,10 +30,3 @@
   <img class='spinner' src='/spiffygif_46x46.gif'>
   <div class='message'></div>
 </script>
-
-<script>
-  window.Templates = {};
-  $('[type="text/x-handlebars-template"]').each(function(index, div){
-    Templates[div.id] = Handlebars.compile(div.innerHTML);
-  });
-</script>

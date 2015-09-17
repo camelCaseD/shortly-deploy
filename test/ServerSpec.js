@@ -13,7 +13,7 @@ var Link = require('../app/models/link');
 
 var User = require('../app/models/user');
 var Link = require('../app/models/link');
-('', function() {
+describe('', function() {
 
   beforeEach(function(done) {
     // Log out currently signed in user
@@ -93,15 +93,20 @@ var Link = require('../app/models/link');
     describe('With previously saved urls: ', function() {
 
       beforeEach(function(done) {
-        link = new Link({
+        Link.create({
           url: 'http://www.roflzoo.com/',
           title: 'Funny pictures of animals, funny dog pictures',
           base_url: 'http://127.0.0.1:4568',
           visits: 0
-        })
+        }, function (err, newLink) {
+          if (err) console.log(err);
 
-        link.save(function() {
-          done();
+          Link.find({_id: newLink._id}).exec(function(err, foundLink) {
+            if (err) console.log(err);
+
+            link = foundLink[0];
+            done();
+          });
         });
       });
 
@@ -113,7 +118,7 @@ var Link = require('../app/models/link');
             'url': 'http://www.roflzoo.com/'})
           .expect(200)
           .expect(function(res) {
-            var secondCode = res.body.code;
+            var secondCode = res.body[0].code;
             expect(secondCode).to.equal(firstCode);
           })
           .end(done);

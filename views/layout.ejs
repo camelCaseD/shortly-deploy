@@ -3,11 +3,15 @@
   <head>
     <meta charset="utf-8" />
     <title>Shortly</title>
+    <% if (process.env.NODE_ENV !== 'production') { %>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="/lib/jquery.js"></script>
     <script src="/lib/underscore.js"></script>
     <script src="/lib/backbone.js"></script>
     <script src="/lib/handlebars.js"></script>
+    <% } else { %>
+    <link rel="stylesheet" type="text/css" href="/dist/style.css">
+    <% } %>
 
   </head>
 

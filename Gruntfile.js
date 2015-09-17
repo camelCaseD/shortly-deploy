@@ -4,8 +4,8 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     concat: {
       dist: {
-        src: ['public/lib/*.js', 'public/client/*.js'],
-        dest: 'public/main.js'
+        src: ['public/lib/jquery.js', 'public/lib/underscore.js', 'public/lib/handlebars.js', 'public/lib/backbone.js', 'public/client/*.js'],
+        dest: 'public/dist/main.js'
       }
     },
 
@@ -27,7 +27,7 @@ module.exports = function(grunt) {
     uglify: {
       main: {
         files: {
-          'public/main.min.js': ['public/main.js']
+          'public/dist/main.js': ['public/dist/main.js']
         }
       }
     },
@@ -50,7 +50,7 @@ module.exports = function(grunt) {
         // Add filespec list here
         target: {
           files: {
-            'public/style.min.css': ['public/style.css']
+            'public/dist/style.css': ['public/style.css']
           }
         }
     },
@@ -126,6 +126,8 @@ module.exports = function(grunt) {
 
   grunt.registerTask('deploy', [
       // add your production server task here
+      'build',
+      'mochaTest',
       'shell'
   ]); // Som change
 
