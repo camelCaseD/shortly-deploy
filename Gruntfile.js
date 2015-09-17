@@ -129,7 +129,7 @@ module.exports = function(grunt) {
       'build',
       'mochaTest',
       'shell'
-  ]); // Som change
+  ]); // Some change
 
 
 };
